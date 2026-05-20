@@ -1,13 +1,26 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   application:
     name: mycrud
-database:
-  driver: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/mycrud
-  username: root
-  password: "Mohd@134"
 
+  # Database ki settings spring ke andar aayengi
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mycrud?createDatabaseIfNotExist=true
+    username: root
+    password: "Mohd@134"
 
+  # Hibernate/JPA settings (MySQL ke liye zaroori hain)
+  jpa:
+    hibernate:
+      ddl-auto: update # Isse tables apne aap ban jayengi
+    show-sql: true     # Console me SQL queries dikhane ke liye
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 logging:
   level:
-    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE # Ye bilkul thik hai!
