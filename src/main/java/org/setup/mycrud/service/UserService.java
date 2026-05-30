@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
     User UserSave(User user, MultipartFile file);
 
-    List<User> GetAllUsers();
+    List<User> GetAllUsers(int page, int size);
 
     User UpdateUser(User user, MultipartFile file);
 
@@ -19,4 +19,6 @@ public interface UserService {
     User PartialUpdate(User user);
 
     String UpdateProfilePicture(User user, MultipartFile file);
+
+    User Login(User user);
 }
