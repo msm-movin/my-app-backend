@@ -29,3 +29,4 @@ spring:
 logging:
   level:
     org.hibernate.orm.jdbc.bind: TRACE
+#h
