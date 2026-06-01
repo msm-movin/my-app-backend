@@ -1,26 +1,31 @@
 spring:
+  # 💡 यह लाइन स्प्रिंग बूट को बताएगी कि रूट फोल्डर से .env फ़ाइल को पढ़ना है
+  config:
+    import: optional:file:.env[.properties]
+
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
   application:
     name: mycrud
 
-  # Database ki settings spring ke andar aayengi
+  # 💡 यहाँ हमने वापस वेरिएबल्स लगा दिए हैं जो .env से डेटा उठाएंगे
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mycrud?createDatabaseIfNotExist=true
-    username: root
-    password: "Mohd@134"
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
-  # Hibernate/JPA settings (MySQL ke liye zaroori hain)
   jpa:
     hibernate:
-      ddl-auto: update # Isse tables apne aap ban jayengi
-    show-sql: true     # Console me SQL queries dikhane ke liye
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 logging:
   level:
-    org.hibernate.orm.jdbc.bind: TRACE # Ye bilkul thik hai!
+    org.hibernate.orm.jdbc.bind: TRACE
